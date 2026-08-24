@@ -2,8 +2,6 @@ import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useContext, useState } from 'react';
 import { NotificationContext } from '../context/NotificationContext';
-import PhaseBanner from '../components/PhaseBanner';
-
 const nav = [
   {to:'/dashboard', label:'Dashboard', perm:'*'},
   {to:'/patients', label:'Patients', perm:'patients'},
@@ -26,7 +24,6 @@ export default function MainLayout(){
   const isAdmin = user.role==='admin';
   return (
     <div className="min-h-screen bg-paper dark:bg-inkdark">
-      <PhaseBanner phase={1}/>
       {/* topbar */}
       <header className="sticky top-0 z-40 bg-paper/90 dark:bg-inkdark/90 backdrop-blur border-b border-line dark:border-linedark">
         <div className="max-w-[1400px] mx-auto px-4 h-16 flex items-center justify-between gap-4">
@@ -53,10 +50,6 @@ export default function MainLayout(){
               <NavLink key={n.to} to={n.to} onClick={()=>setOpen(false)} className={({isActive})=>`block px-3 py-2 rounded-lg text-sm ${isActive ? 'bg-ink dark:bg-paperdark text-paper dark:text-inkdark font-medium':'text-slate hover:bg-ink/5 dark:hover:bg-white/5'}`}>{n.label}</NavLink>
             ))}
           </nav>
-          <div className="mt-8 card p-4">
-            <p className="mini-tag">PHASE 1 DEMO</p>
-            <p className="text-xs mt-2 text-slate">Show sidebar role-switch + dashboard to team. Phase 2 adds full flows.</p>
-          </div>
         </aside>
         <main className="flex-1 min-w-0 px-4 sm:px-6 py-6">
           <Outlet/>

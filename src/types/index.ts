@@ -65,3 +65,64 @@ export interface Medicine {
   price: number;
   supplier: string;
 }
+
+export interface MedicalRecord {
+  id: string;
+  patient: string;
+  doctor: string;
+  date: string;
+  diagnosis: string;
+  treatment: string;
+  notes?: string;
+}
+
+export interface RxItem {
+  medicine: string;
+  dose: string;
+  frequency: string;
+  duration: string;
+}
+
+export interface Prescription {
+  id: string;
+  patient: string;
+  doctor: string;
+  date: string;
+  items: RxItem[];
+  notes?: string;
+}
+
+export interface LabReport {
+  id: string;
+  patient: string;
+  test: string;
+  date: string;
+  status: 'Pending' | 'Ready';
+  fileName?: string;
+  fileUrl?: string;
+  summary?: string;
+}
+
+export interface InvoiceItem {
+  label: string;
+  amount: number;
+}
+
+export interface Invoice {
+  id: string;
+  patient: string;
+  date: string;
+  items: InvoiceItem[];
+  status: 'Paid' | 'Pending' | 'Overdue';
+}
+
+export interface ClinicLocation {
+  id: string;
+  name: string;
+  type: 'Hospital' | 'Clinic' | 'Lab' | 'Pharmacy';
+  address: string;
+  phone: string;
+  hours: string;
+  lat: number;
+  lng: number;
+}
