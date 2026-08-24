@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tearline — Hospital HMS Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          paper: '#F6F5F1', surface: '#FFFFFF', ink: '#1B1D22', slate: '#666B75', line: '#E4E2DC',
+          cobalt: { DEFAULT: '#2A4CDB', dark: '#1E39B0', light: '#6C86FF' },
+          amber: { DEFAULT: '#E8A33D', light: '#F0B65C' },
+          mint: { DEFAULT: '#1F9D66', light: '#3DBE86' },
+          rose: { DEFAULT: '#D64545', light: '#F16565' },
+          inkdark: '#14161A', surfacedark: '#1D2027', linedark: '#2C2F37', slatedark: '#9A9EA8', paperdark: '#F1F0EC'
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          sans: ['"Inter"', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace']
+        },
+        borderRadius: { xs: '4px', sm: '6px', md: '10px', lg: '16px', xl: '24px', '2xl': '32px' },
+        boxShadow: {
+          xs: '0 1px 2px rgba(27,29,34,0.05)', sm: '0 2px 10px rgba(27,29,34,0.06)',
+          md: '0 10px 30px rgba(27,29,34,0.08)', lg: '0 20px 50px rgba(27,29,34,0.14)',
+          glow: '0 0 0 4px rgba(42,76,219,0.15)'
+        },
+        keyframes: {
+          fadeUp: { '0%': { opacity: 0, transform: 'translateY(16px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          shimmer: { '0%': { backgroundPosition: '-400px 0' }, '100%': { backgroundPosition: '400px 0' } },
+          floatSlow: { '0%,100%': { transform: 'translateY(0) rotate(-2deg)' }, '50%': { transform: 'translateY(-8px) rotate(-1deg)' } },
+          stripes: { '0%': { backgroundPosition: '0 0' }, '100%': { backgroundPosition: '28px 0' } }
+        },
+        animation: {
+          fadeUp: 'fadeUp .5s cubic-bezier(.16,1,.3,1) both',
+          shimmer: 'shimmer 1.6s infinite linear',
+          floatSlow: 'floatSlow 5s ease-in-out infinite',
+          stripes: 'stripes 1s linear infinite'
+        }
+      }
+    }
+  };
+</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style type="text/tailwindcss">
+  :root { color-scheme: light; } html.dark { color-scheme: dark; }
+  body { -webkit-font-smoothing: antialiased; }
+  ::selection { background: #2A4CDB; color: #fff; }
+  :focus-visible { outline: 2px solid #2A4CDB; outline-offset: 3px; border-radius: 4px; }
+  .ticket-tag { display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; padding:4px 10px; border:1px dashed #C7C4B9; border-radius:4px; color:#666B75; }
+  html.dark .ticket-tag { border-color:#3A3D46; color:#9A9EA8; }
+  .mini-tag { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.08em; color:#666B75; }
+  html.dark .mini-tag { color:#9A9EA8; }
+  @layer components {
+    .btn-primary { @apply px-5 py-2.5 rounded-full bg-cobalt text-white text-sm font-medium shadow-sm hover:bg-cobalt-dark hover:shadow-md active:scale-[.96] transition-all; }
+    .btn-secondary { @apply px-5 py-2.5 rounded-full bg-ink dark:bg-paperdark text-paper dark:text-inkdark text-sm font-medium hover:opacity-90 active:scale-[.96] transition-all; }
+    .btn-outline { @apply px-5 py-2.5 rounded-full border border-line dark:border-linedark text-sm font-medium hover:border-ink dark:hover:border-paperdark active:scale-[.96] transition-all; }
+    .btn-ghost { @apply px-5 py-2.5 rounded-full text-sm font-medium text-slate dark:text-slatedark hover:bg-ink/5 dark:hover:bg-white/5 active:scale-[.96] transition-all; }
+    .btn-icon { @apply w-9 h-9 rounded-full border border-line dark:border-linedark grid place-content-center hover:border-ink dark:hover:border-paperdark transition-colors; }
+    .field { @apply w-full px-4 py-2.5 rounded-lg bg-surface dark:bg-surfacedark border border-line dark:border-linedark text-sm placeholder:text-slate/60 dark:placeholder:text-slatedark/60 focus:border-cobalt focus:shadow-glow outline-none transition-all; }
+    .panel { @apply absolute top-full left-0 mt-2 p-1.5 rounded-xl bg-surface dark:bg-surfacedark shadow-lg border border-line dark:border-linedark z-40; }
+    .menu-item { @apply w-full text-left px-2.5 py-1.5 rounded-md hover:bg-ink/5 dark:hover:bg-white/5 text-sm flex items-center gap-2; }
+    .card { @apply p-6 rounded-xl bg-surface dark:bg-surfacedark shadow-sm; }
+  }
+</style>
+</head>
+<body class="bg-paper dark:bg-inkdark text-ink dark:text-paperdark font-sans">
+<header class="sticky top-0 z-50 bg-paper/85 dark:bg-inkdark/85 backdrop-blur-md border-b border-line dark:border-linedark">
+  <div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2"><span class="w-8 h-8 rounded-md bg-ink dark:bg-paperdark text-paper dark:text-inkdark grid place-content-center font-display font-semibold text-sm rotate-[-4deg]">H</span><span class="font-display font-semibold">MediCare HMS</span></div>
+    <span class="ticket-tag">Tearline Design System — Reference</span>
+  </div>
+</header>
+<section class="max-w-[1400px] mx-auto px-6 py-12">
+  <span class="ticket-tag">61 SPECIMENS · LIGHT + DARK</span>
+  <h1 class="font-display font-semibold text-5xl mt-6">Every <span class="text-cobalt">primitive.</span></h1>
+  <p class="mt-4 text-slate max-w-lg">Hospital Management System — tokens extracted: paper #F6F5F1, ink #1B1D22, cobalt #2A4CDB, amber #E8A33D, mint #1F9D66, rose #D64545 — Inter/Space Grotesk/IBM Plex Mono — radius xs-2xl — shadows xs-lg.</p>
+  <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+    <div class="card"><p class="mini-tag">COLOR</p><div class="mt-2 h-8 rounded bg-paper border"></div><p class="font-mono text-xs mt-1">#F6F5F1 Paper</p></div>
+    <div class="card"><p class="mini-tag">COLOR</p><div class="mt-2 h-8 rounded bg-cobalt"></div><p class="font-mono text-xs mt-1">#2A4CDB Cobalt</p></div>
+    <div class="card"><p class="mini-tag">COLOR</p><div class="mt-2 h-8 rounded bg-ink"></div><p class="font-mono text-xs mt-1">#1B1D22 Ink</p></div>
+    <div class="card"><p class="mini-tag">COLOR</p><div class="mt-2 h-8 rounded bg-mint"></div><p class="font-mono text-xs mt-1">#1F9D66 Mint</p></div>
+  </div>
+  <div class="mt-6 flex gap-3"><button class="btn-primary">Primary</button><button class="btn-secondary">Secondary</button><button class="btn-outline">Outline</button><button class="btn-ghost">Ghost</button></div>
+  <div class="mt-6 card"><p class="mini-tag">FIELD</p><input class="field mt-2" placeholder="Example input — .field" /></div>
+</section>
+</body>
+</html>

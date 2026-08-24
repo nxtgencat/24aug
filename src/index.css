@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html.dark { color-scheme: dark; }
+body { -webkit-font-smoothing: antialiased; @apply bg-paper dark:bg-inkdark text-ink dark:text-paperdark font-sans; }
+::selection { background: #2A4CDB; color: #fff; }
+:focus-visible { outline: 2px solid #2A4CDB; outline-offset: 3px; border-radius: 4px; }
+
+/* scrollbar - tearline */
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: #D8D6CE; border-radius: 999px; border: 3px solid #F6F5F1; }
+::-webkit-scrollbar-thumb:hover { background-color: #B9B6AB; }
+html.dark ::-webkit-scrollbar-thumb { background-color: #33363E; border-color: #14161A; }
+
+/* reusable tearline classes */
+@layer components {
+  .btn-primary { @apply px-5 py-2.5 rounded-full bg-cobalt text-white text-sm font-medium shadow-sm hover:bg-cobalt-dark hover:shadow-md active:scale-[.96] transition-all; }
+  .btn-secondary { @apply px-5 py-2.5 rounded-full bg-ink dark:bg-paperdark text-paper dark:text-inkdark text-sm font-medium hover:opacity-90 active:scale-[.96] transition-all; }
+  .btn-outline { @apply px-5 py-2.5 rounded-full border border-line dark:border-linedark text-sm font-medium hover:border-ink dark:hover:border-paperdark active:scale-[.96] transition-all; }
+  .btn-ghost { @apply px-5 py-2.5 rounded-full text-sm font-medium text-slate dark:text-slatedark hover:bg-ink/5 dark:hover:bg-white/5 active:scale-[.96] transition-all; }
+  .btn-icon { @apply w-9 h-9 rounded-full border border-line dark:border-linedark grid place-content-center hover:border-ink dark:hover:border-paperdark transition-colors; }
+  .field { @apply w-full px-4 py-2.5 rounded-lg bg-surface dark:bg-surfacedark border border-line dark:border-linedark text-sm placeholder:text-slate/60 dark:placeholder:text-slatedark/60 focus:border-cobalt focus:shadow-glow outline-none transition-all; }
+  .panel { @apply absolute top-full left-0 mt-2 p-1.5 rounded-xl bg-surface dark:bg-surfacedark shadow-lg border border-line dark:border-linedark z-40; }
+  .menu-item { @apply w-full text-left px-2.5 py-1.5 rounded-md hover:bg-ink/5 dark:hover:bg-white/5 text-sm flex items-center gap-2; }
+  .card { @apply p-6 rounded-xl bg-surface dark:bg-surfacedark shadow-sm border border-line/50 dark:border-linedark; }
+  .ticket-tag { @apply inline-flex items-center gap-2 font-mono text-[11px] tracking-widest px-2.5 py-1 rounded border border-dashed border-line dark:border-linedark text-slate dark:text-slatedark; }
+  .mini-tag { @apply font-mono text-[10px] tracking-widest text-slate dark:text-slatedark; }
+}
+
+.perf { position: relative; height: 1px; }
+.perf::before { content:''; position:absolute; inset:0; background-image: linear-gradient(to right, #D8D6CE 50%, transparent 0%); background-size: 10px 1px; background-repeat: repeat-x; background-position: center; }
+html.dark .perf::before { background-image: linear-gradient(to right, #33363E 50%, transparent 0%); }
+.perf-notch { position:absolute; top:50%; width:18px; height:18px; border-radius:999px; background:#F6F5F1; transform:translateY(-50%); }
+html.dark .perf-notch { background:#14161A; }
+.perf-notch.left{left:-9px} .perf-notch.right{right:-9px}
+.skeleton { background: linear-gradient(90deg,#E9E7E0 25%,#F5F4EF 37%,#E9E7E0 63%); background-size:400px 100%; }
+html.dark .skeleton { background: linear-gradient(90deg,#24272E 25%,#2C2F37 37%,#24272E 63%); background-size:400px 100%; }
