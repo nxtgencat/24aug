@@ -1,16 +1,25 @@
 import { dashboardStats, mockAppointments, mockDoctors } from '../services/mockData';
 import { formatCurrency } from '../utils/helpers';
 import Badge from '../components/ui/Badge';
+import { useNavigate } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 const chart = [{name:'Mon', rev:42000},{name:'Tue', rev:38000},{name:'Wed', rev:52000},{name:'Thu', rev:48000},{name:'Fri', rev:61000},{name:'Sat', rev:35000},{name:'Sun', rev:28000}];
 
+const quickActions = [
+  { label:'Register Patient', to:'/patients' },
+  { label:'Book Appointment', to:'/appointments' },
+  { label:'Create Prescription', to:'/prescriptions' },
+  { label:'Generate Bill', to:'/billing' },
+];
+
 export default function Dashboard(){
+  const nav=useNavigate();
   return (
     <div className="space-y-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <span className="ticket-tag">DASHBOARD · PHASE 1</span>
+          <span className="ticket-tag">DASHBOARD · OVERVIEW</span>
           <h1 className="font-display text-3xl font-semibold mt-2">Overview</h1>
           <p className="text-slate text-sm mt-1">Visual demo for team — cards, charts, activities, quick actions</p>
         </div>
@@ -66,7 +75,7 @@ export default function Dashboard(){
         <div className="card">
           <p className="mini-tag mb-3">QUICK ACTIONS</p>
           <div className="grid grid-cols-2 gap-3">
-            {['Register Patient','Book Appointment','Create Prescription','Generate Bill'].map(l=><button key={l} className="p-4 rounded-xl border border-line dark:border-linedark hover:border-ink dark:hover:border-paperdark text-sm font-medium text-left">{l} →</button>)}
+            {quickActions.map(a=><button key={a.label} onClick={()=>nav(a.to)} className="p-4 rounded-xl border border-line dark:border-linedark hover:border-ink dark:hover:border-paperdark text-sm font-medium text-left">{a.label} →</button>)}
           </div>
           <p className="mini-tag mt-4 mb-2">DOCTORS ON DUTY</p>
           <div className="flex -space-x-2">{mockDoctors.slice(0,4).map(d=><div key={d.id} className="w-8 h-8 rounded-full bg-cobalt text-white grid place-items-center text-xs border-2 border-surface">{d.name.split(' ')[1][0]}</div>)}</div>

@@ -54,7 +54,7 @@ export interface NotificationItem {
   message: string;
   time: string;
   read: boolean;
-  type: 'appointment' | 'billing' | 'lab' | 'prescription';
+  type: 'appointment' | 'billing' | 'lab' | 'prescription' | 'pharmacy';
 }
 
 export interface Medicine {

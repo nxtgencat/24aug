@@ -21,11 +21,26 @@ export function AuthProvider({children}:{children:ReactNode}){
     else localStorage.removeItem('hms_user');
   },[user]);
 
-  // auto logout after 30 min inactivity
+  // auto logout after 30 min of inactivity (timer resets on user interaction)
   useEffect(()=>{
     if(!user) return;
-    const t=setTimeout(()=>{ localStorage.removeItem('hms_token'); localStorage.removeItem('hms_user'); setUser(null); }, 30*60*1000);
-    return ()=>clearTimeout(t);
+    let timer: ReturnType<typeof setTimeout>;
+    const reset = ()=>{
+      clearTimeout(timer);
+      timer = setTimeout(()=>{
+        localStorage.removeItem('hms_token');
+        localStorage.removeItem('hms_user');
+        setUser(null);
+      }, 30*60*1000);
+    };
+    reset();
+    window.addEventListener('pointerdown', reset);
+    window.addEventListener('keydown', reset);
+    return ()=>{
+      clearTimeout(timer);
+      window.removeEventListener('pointerdown', reset);
+      window.removeEventListener('keydown', reset);
+    };
   },[user]);
 
   const login=(email:string, role:Role)=>{

@@ -9,7 +9,7 @@ export default function AuthLayout(){
           <p className="mt-4 text-white/70 leading-relaxed">Secure auth, role-based access, and enterprise workflows — built on Tearline primitives.</p>
           <div className="mt-8 grid grid-cols-2 gap-3">
             <div className="rounded-xl bg-white/10 p-4"><p className="font-mono text-xs">Demo Accounts</p><p className="text-xs mt-1 opacity-70">admin / doctor / receptionist / patient — any password</p></div>
-            <div className="rounded-xl bg-cobalt p-4"><p className="font-mono text-xs">Phase 1 Visual</p><p className="text-xs mt-1">Auth + Dashboard ready for team review</p></div>
+            <div className="rounded-xl bg-cobalt p-4"><p className="font-mono text-xs">Full System</p><p className="text-xs mt-1">Appointments · Pharmacy · Billing · Reports · Map</p></div>
           </div>
         </div>
       </div>

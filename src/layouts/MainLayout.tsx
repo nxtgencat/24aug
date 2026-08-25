@@ -13,6 +13,7 @@ const nav = [
   {to:'/pharmacy', label:'Pharmacy', perm:'*'},
   {to:'/billing', label:'Billing', perm:'*'},
   {to:'/reports', label:'Reports', perm:'*'},
+  {to:'/map', label:'Locations Map', perm:'*'},
 ];
 
 export default function MainLayout(){

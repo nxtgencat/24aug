@@ -1,13 +1,19 @@
 import { useState } from 'react';
-export default function FileUpload({label}:{label?:string}){
+type Props = { label?: string; onFile?: (f: File | null) => void };
+export default function FileUpload({label, onFile}:{label?:string; onFile?:Props['onFile']}){
   const [file,setFile]=useState<File|null>(null);
   const [progress,setProgress]=useState(0);
-  const onPick=(e:React.ChangeEvent<HTMLInputElement>)=>{
-    const f=e.target.files?.[0]; if(!f) return;
+  const pick=(f:File)=>{
     if(f.size>5*1024*1024){ alert('Max 5MB'); return; }
     if(!['image/jpeg','image/png','application/pdf'].includes(f.type)){ alert('Only JPG/PNG/PDF'); return; }
-    setFile(f); setProgress(0);
+    setFile(f); setProgress(0); onFile?.(f);
     let p=0; const id=setInterval(()=>{p+=20; setProgress(p); if(p>=100) clearInterval(id);},200);
+  };
+  const clear=()=>{ setFile(null); setProgress(0); onFile?.(null); };
+  const onPick=(e:React.ChangeEvent<HTMLInputElement>)=>{
+    const f=e.target.files?.[0]; e.target.value='';
+    if(!f) return;
+    pick(f);
   };
   return (
     <div className="card">
@@ -21,7 +27,7 @@ export default function FileUpload({label}:{label?:string}){
         <div className="h-1.5 bg-line dark:bg-linedark rounded-full mt-2 overflow-hidden"><div className="h-full bg-cobalt transition-all" style={{width:`${progress}%`}}/></div>
         <div className="mt-2 flex gap-2">
           {file.type.startsWith('image') ? <img src={URL.createObjectURL(file)} alt="preview" className="w-20 h-20 object-cover rounded-lg border"/> : <div className="w-20 h-20 grid place-items-center bg-paper dark:bg-inkdark rounded-lg border text-xs">PDF</div>}
-          <button onClick={()=>{setFile(null); setProgress(0);}} className="btn-outline py-1 text-xs">Remove</button>
+          <button onClick={clear} className="btn-outline py-1 text-xs">Remove</button>
         </div>
       </div>}
     </div>

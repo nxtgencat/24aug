@@ -10,7 +10,16 @@ const Dashboard = lazy(()=>import('../pages/Dashboard'));
 const Patients = lazy(()=>import('../pages/Patients'));
 const Doctors = lazy(()=>import('../pages/Doctors'));
 const UIPreview = lazy(()=>import('../pages/UIPreview'));
-const Generic = lazy(()=>import('../pages/GenericPlaceholder'));
+const Appointments = lazy(()=>import('../pages/Appointments'));
+const MedicalRecords = lazy(()=>import('../pages/MedicalRecords'));
+const Prescriptions = lazy(()=>import('../pages/Prescriptions'));
+const LabReports = lazy(()=>import('../pages/LabReports'));
+const Pharmacy = lazy(()=>import('../pages/Pharmacy'));
+const Billing = lazy(()=>import('../pages/Billing'));
+const Reports = lazy(()=>import('../pages/Reports'));
+const ClinicMap = lazy(()=>import('../pages/ClinicMap'));
+const Notifications = lazy(()=>import('../pages/Notifications'));
+const NotFound = lazy(()=>import('../pages/NotFound'));
 
 import { useAuth } from '../hooks/useAuth';
 
@@ -31,15 +40,16 @@ export const router = createBrowserRouter([
     { path: '/dashboard', element: <Suspense fallback={<Loader/>}><Dashboard/></Suspense> },
     { path: '/patients', element: <Suspense fallback={<Loader/>}><Patients/></Suspense> },
     { path: '/doctors', element: <Suspense fallback={<Loader/>}><Doctors/></Suspense> },
-    { path: '/appointments', element: <Suspense fallback={<Loader/>}><Generic title="Appointments"/></Suspense> },
-    { path: '/records', element: <Suspense fallback={<Loader/>}><Generic title="Records"/></Suspense> },
-    { path: '/prescriptions', element: <Suspense fallback={<Loader/>}><Generic title="Prescriptions"/></Suspense> },
-    { path: '/lab', element: <Suspense fallback={<Loader/>}><Generic title="Laboratory"/></Suspense> },
-    { path: '/pharmacy', element: <Suspense fallback={<Loader/>}><Generic title="Pharmacy"/></Suspense> },
-    { path: '/billing', element: <Suspense fallback={<Loader/>}><Generic title="Billing"/></Suspense> },
-    { path: '/reports', element: <Suspense fallback={<Loader/>}><Generic title="Reports"/></Suspense> },
-    { path: '/notifications', element: <Suspense fallback={<Loader/>}><Generic title="Notifications" note="Bell count + list with mark-as-read — Phase 2 adds EmailJS triggers"/></Suspense> },
+    { path: '/appointments', element: <Suspense fallback={<Loader/>}><Appointments/></Suspense> },
+    { path: '/records', element: <Suspense fallback={<Loader/>}><MedicalRecords/></Suspense> },
+    { path: '/prescriptions', element: <Suspense fallback={<Loader/>}><Prescriptions/></Suspense> },
+    { path: '/lab', element: <Suspense fallback={<Loader/>}><LabReports/></Suspense> },
+    { path: '/pharmacy', element: <Suspense fallback={<Loader/>}><Pharmacy/></Suspense> },
+    { path: '/billing', element: <Suspense fallback={<Loader/>}><Billing/></Suspense> },
+    { path: '/reports', element: <Suspense fallback={<Loader/>}><Reports/></Suspense> },
+    { path: '/map', element: <Suspense fallback={<Loader/>}><ClinicMap/></Suspense> },
+    { path: '/notifications', element: <Suspense fallback={<Loader/>}><Notifications/></Suspense> },
     { path: '/ui-preview', element: <Suspense fallback={<Loader/>}><UIPreview/></Suspense> },
   ]},
-  { path: '*', element: <div className="p-10 text-center"><p className="font-display text-2xl">404 — Not Found</p><a href="/dashboard" className="text-cobalt underline">Go Dashboard</a></div> }
+  { path: '*', element: <Suspense fallback={<Loader/>}><NotFound/></Suspense> }
 ]);
