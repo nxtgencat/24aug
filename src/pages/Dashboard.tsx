@@ -17,13 +17,10 @@ export default function Dashboard(){
   const nav=useNavigate();
   return (
     <div className="space-y-6">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <span className="ticket-tag">DASHBOARD · OVERVIEW</span>
-          <h1 className="font-display text-3xl font-semibold mt-2">Overview</h1>
-          <p className="text-slate text-sm mt-1">Visual demo for team — cards, charts, activities, quick actions</p>
-        </div>
-        <a href="/ui-preview" className="btn-outline hidden sm:inline-flex">UI Preview →</a>
+      <div>
+        <span className="ticket-tag">DASHBOARD · OVERVIEW</span>
+        <h1 className="font-display text-3xl font-semibold mt-2">Overview</h1>
+        <p className="text-slate text-sm mt-1">Cards, charts, activities and quick actions</p>
       </div>
 
       {/* stats */}

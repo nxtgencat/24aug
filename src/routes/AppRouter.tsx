@@ -9,7 +9,6 @@ const Register = lazy(()=>import('../pages/Register'));
 const Dashboard = lazy(()=>import('../pages/Dashboard'));
 const Patients = lazy(()=>import('../pages/Patients'));
 const Doctors = lazy(()=>import('../pages/Doctors'));
-const UIPreview = lazy(()=>import('../pages/UIPreview'));
 const Appointments = lazy(()=>import('../pages/Appointments'));
 const MedicalRecords = lazy(()=>import('../pages/MedicalRecords'));
 const Prescriptions = lazy(()=>import('../pages/Prescriptions'));
@@ -49,7 +48,6 @@ export const router = createBrowserRouter([
     { path: '/reports', element: <Suspense fallback={<Loader/>}><Reports/></Suspense> },
     { path: '/map', element: <Suspense fallback={<Loader/>}><ClinicMap/></Suspense> },
     { path: '/notifications', element: <Suspense fallback={<Loader/>}><Notifications/></Suspense> },
-    { path: '/ui-preview', element: <Suspense fallback={<Loader/>}><UIPreview/></Suspense> },
   ]},
   { path: '*', element: <Suspense fallback={<Loader/>}><NotFound/></Suspense> }
 ]);
